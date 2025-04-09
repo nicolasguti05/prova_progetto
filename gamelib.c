@@ -11,6 +11,8 @@ static Giocatore* giocatori[3] = {0,0,0}; //array di 3 giocatori(NULL se non par
 
 //funzioni per imposta_gioco()
 static void creazione_giocatori();
+static int ottieni_numero_gioctori();
+static void crea_giocatore(int i, bool* prince);
 static void menu_impostazione_mappa();
 static void ins_stanza();
 static void canc_stanza();
@@ -195,6 +197,20 @@ static void creazione_giocatori() {
         giocatori[i] = NULL;
     }
     
+    int num_giocatori = ottieni_numero_giocatori();
+
+    bool prince = false;
+    for (int i = 0; i < num_giocatori; i++) {
+        crea_giocatore(i, &prince);
+    }
+
+    if (!prince) {
+        printf("ERROE! Deve esserci almeno un principe per giocare.\n");
+        return;
+    }
+}
+
+static int ottieni_numero_giocatori() {
     printf ("Inserisci il numero di giocatori (da 1 a 3): ");
     int num_giocatori;
     scanf ("%d", &num_giocatori);
@@ -204,10 +220,11 @@ static void creazione_giocatori() {
         printf ("Inserire un numero di giocatori valido: ");
         scanf ("%d", &num_giocatori);
     }
+    return num_giocatori;
+}
 
-    bool prince = false;
-    for (int i = 0; i < num_giocatori; i++) {
-        giocatori[i] = malloc(sizeof(Giocatore));
+static void crea_giocatore(int i, bool* prince) {
+    giocatori[i] = malloc(sizeof(Giocatore));
         if (!giocatori[i]) {
             printf(RED"Errore di allocazione memoria!"RESET);
             exit(1);
@@ -216,10 +233,10 @@ static void creazione_giocatori() {
         printf ("Inserisci il nome del giocatore %d: ", i + 1);
         scanf("%s", giocatori[i]->nome_giocatore);
 
-        if(!prince) {
+        if(!*prince) {
             printf ("Il primo giocatore deve essere un Principe.\n");
             giocatori[i]->classe_giocatore = principe;
-            prince = true;
+            *prince = true;
         } else {
             printf("Il giocatore sarà un Doppleganger.\n"), i +1;
             giocatori[i]->classe_giocatore = doppleganger;
@@ -230,12 +247,6 @@ static void creazione_giocatori() {
         giocatori[i]->dadi_attaco = 2;
         giocatori[i]->dadi_difesa = 2;
         giocatori[i]->posizione = NULL;
-    }
-
-    if (!principe) {
-        printf(RED"ERROE: Deve esserci almeno un principe per giocare!\n"RESET);
-        return;
-    }
 }
 
     //menu di gestione della mappa
