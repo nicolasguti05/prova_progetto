@@ -62,7 +62,7 @@ typedef struct Nemico {
 
 #define DEBUG 1
 #if DEBUG
-    #define DBG_PRINTF(...) printf(BLUE"[DEBUG]"__VA_ARGS__) printf(RESET)
+    #define DBG_PRINTF(...) printf(BLUE"[DEBUG]"__VA_ARGS__); printf(RESET)
 #else
     #define DBG_PRINTF(...)
 #endif
