@@ -7,9 +7,10 @@
 
 #define YELLOW  "\e[0;33m"
 #define RED     "\e[0;31m"
+#define GREEN   "\e[0;32m"
 #define BLUE    "\e[0;34m"
 #define RESET   "\e[0m"
-
+#define MAX_STANZE 100
 
 void imposta_gioco();
 void gioca();
@@ -28,7 +29,7 @@ typedef enum Tipo_tesoro {nessun_tesoro, verde_veleno, blu_guarigione, rosso_aum
 
 
 typedef struct Giocatore {
-    char nome_giocatore [20];
+    char nome_giocatore [25];
     enum Classe_giocatore classe_giocatore;
     struct Stanza* posizione;
     unsigned char p_vita_max;
@@ -47,6 +48,8 @@ typedef struct Stanza {
     enum Tipo_trabocchetto tipo_trabocchetto;
     enum Tipo_tesoro tipo_tesoro;
     enum Classe_nemico nemico;
+    int x; // coordinate per le stanze
+    int y;
 } Stanza;
 
 typedef struct Nemico {
@@ -55,3 +58,11 @@ typedef struct Nemico {
     unsigned char attacco_nemico;
     unsigned char difesa_nemico;
 } Nemico;
+
+
+#define DEBUG 1
+#if DEBUG
+    #define DBG_PRINTF(...) printf(BLUE"[DEBUG]"__VA_ARGS__) printf(RESET)
+#else
+    #define DBG_PRINTF(...)
+#endif
