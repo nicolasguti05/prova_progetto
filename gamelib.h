@@ -11,6 +11,7 @@
 #define BLUE    "\e[0;34m"
 #define RESET   "\e[0m"
 #define MAX_STANZE 100
+#define MAX_TRABOCCHETTI_SUBITI 50
 
 void imposta_gioco();
 void gioca();
@@ -37,6 +38,9 @@ typedef struct Giocatore {
     unsigned char dadi_attaco;
     unsigned char dadi_difesa;
     unsigned char scappatoie_usate; //campo aggiunto per gestire le scappatoie in base al giocatore
+
+    struct Stanza* trabocchetti_subiti[MAX_TRABOCCHETTI_SUBITI];
+    int num_trabocchetti_subiti;
 } Giocatore;
 
 typedef struct Stanza {
@@ -62,7 +66,7 @@ typedef struct Nemico {
 
 #define DEBUG 1
 #if DEBUG
-    #define DBG_PRINTF(...) printf(BLUE"[DEBUG]"__VA_ARGS__); printf(RESET)
+    #define DBG_PRINTF(...) printf(BLUE""__VA_ARGS__); printf(RESET)
 #else
     #define DBG_PRINTF(...)
 #endif
