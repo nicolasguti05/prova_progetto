@@ -4,32 +4,9 @@
 int main() {
     system("clear");
     unsigned short scelta = 0;
-    char otitle[] = "*---------------------*";
-    char title[] = "|  PRINCE OF INERTIA  |";
-
-    printf(YELLOW);
-    for (int i = 0; otitle[i] != '\0'; i++) {
-        printf("%c", otitle[i]);
-        fflush(stdout);
-        usleep(50000); //ritardo di 100ms tra i caratteri
-    }
-    printf(RESET"\n");
-
-    printf(YELLOW);
-    for (int i = 0; title[i] != '\0'; i++) {
-        printf("%c", title[i]);
-        fflush(stdout);
-        usleep(100000); //ritardo di 100ms tra i caratteri
-    }
-    printf(RESET"\n");
-
-    printf(YELLOW);
-    for (int i = 0; otitle[i] != '\0'; i++) {
-        printf("%c", otitle[i]);
-        fflush(stdout);
-        usleep(50000); //ritardo di 100ms tra i caratteri
-    }
-    printf(RESET"\n");
+    printf (YELLOW"*---------------------*\n");
+    printf ("   PRINCE OF INERTIA   \n");
+    printf ("*---------------------*\n"RESET);
 
     do {
         printf(YELLOW"Premere INVIO per continuare\n"RESET);
