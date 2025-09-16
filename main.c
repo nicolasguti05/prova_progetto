@@ -47,6 +47,7 @@ int main() {
             break;
         }
     }
-    while (scelta != 3);
+    while (1);
+    return 0;
 
 }
