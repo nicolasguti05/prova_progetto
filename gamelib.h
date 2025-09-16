@@ -33,14 +33,17 @@ typedef struct Giocatore {
     char nome_giocatore [25];
     enum Classe_giocatore classe_giocatore;
     struct Stanza* posizione;
-    unsigned char p_vita_max;
-    unsigned char p_vita;
+    int p_vita_max;
+    int p_vita;
     unsigned char dadi_attaco;
     unsigned char dadi_difesa;
     unsigned char scappatoie_usate; //campo aggiunto per gestire le scappatoie in base al giocatore
+    bool primo_trabocchetto_ignorato;
 
     struct Stanza* trabocchetti_subiti[MAX_TRABOCCHETTI_SUBITI];
     int num_trabocchetti_subiti;
+
+    bool vivo;
 } Giocatore;
 
 typedef struct Stanza {
@@ -52,13 +55,14 @@ typedef struct Stanza {
     enum Tipo_trabocchetto tipo_trabocchetto;
     enum Tipo_tesoro tipo_tesoro;
     enum Classe_nemico nemico;
+    int id;
     int x; // coordinate per le stanze
     int y;
 } Stanza;
 
 typedef struct Nemico {
     enum Classe_nemico nemico;
-    unsigned char vita_nemico;
+    int vita_nemico;
     unsigned char attacco_nemico;
     unsigned char difesa_nemico;
 } Nemico;
